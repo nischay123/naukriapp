@@ -1,0 +1,80 @@
+.header{
+    background-color: #303F60;
+}
+
+.heading_title{
+    width: 1300px;
+    width: 90%;
+    margin: 0  auto;
+    padding: 1.4rem 0 ;
+    border-bottom: #4d618e 1px solid;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.heading_logo{
+    color: white;
+    font-weight: 500;
+    text-transform: capitalize;
+    padding: 0%;
+    font-size: 1.4rem;
+
+}
+.heading_logo span{
+    color: #43AFFF;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+
+.heading_right_info{
+    display: flex;
+    flex-direction: row;
+}
+.ProfileIcon{
+    border-radius: 25px;
+    background-color: var(--light-blue--lighter);
+    border: var();
+    width: 2.4rem;
+    height: 2.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto auto;
+    font-size: 1.2rem;
+    color: var(--dark-black);
+    text-transform: capitalize;
+    /* font-weight: 500; */
+}
+.postjobDiv{
+    color: var(--light-blue--lighter);
+    margin-right: 2rem;
+}
+.drop_icon{
+    padding: auto;
+    padding-left: 1rem;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+.logout_container{
+    cursor: pointer;
+    padding: .4rem .8rem ;
+    display: inline-block;
+    background-color: var(--white-color);
+    border-radius: 5px;
+    position: relative;
+    position: absolute;
+    top:5rem;
+    right: 3rem;
+    transition: translateY(-100px);
+}
+.logout_container svg{
+    transform: rotate(180deg);
+    color: tomato;
+    top: -10px;
+    right: 10px;
+    transition: translateY(100%);
+    position: absolute;
+}

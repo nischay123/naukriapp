@@ -1,0 +1,20 @@
+.blackspace{
+    background: linear-gradient(253deg, #303f60 0%, #1a253c 100%) 0% 0% no-repeat;
+    width: 100%;
+    padding-bottom: 20%;
+    z-index: 10;
+
+}
+.logo {
+    background-color: red;
+    color: turquoise;
+    background: url(../../assets/home-svg.png) no-repeat center;
+  }
+.home_navigator{
+    width: 90%;
+    margin: 0 auto;
+    padding-top: 2rem;
+}
+  .icon_home{
+      color: var(--white-color);
+  }

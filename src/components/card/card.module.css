@@ -1,0 +1,22 @@
+.card{
+    width: 30%;
+    padding : 1.3rem;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+box-shadow: 0px 3px 6px #557DA526;
+border-radius: 5px;
+    
+}
+
+.card_title{
+    line-height: 1.4rem;
+    font-weight: 500;
+    font-size: 1.3rem;
+    text-transform: capitalize;
+    padding-bottom: 1rem;
+    color: #43AFFF;
+    max-width: 10rem;
+}
+.card_description{
+    font-size: .7rem;
+    line-height: .9rem;
+}

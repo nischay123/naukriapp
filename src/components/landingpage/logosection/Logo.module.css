@@ -1,0 +1,12 @@
+.logo_container img{
+    max-width: 8rem;
+    max-height: 2rem;
+    /* padding-right: 1.4rem; */
+    display: inline-block;
+    margin-bottom: 3rem;
+}
+.logo_container{
+    display: flex;
+    padding: 1rem;
+    justify-content: space-between;
+}
