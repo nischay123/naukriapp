@@ -4,6 +4,7 @@ import style from './PostJob.module.css'
 import Button from '../../components/Button/Button'
 import { checkLength } from '../../common/Commonfunction'
 import { LoginApi, PostData } from '../../apis/Api'
+import { withRouter } from 'react-router'
 const PostJob = (props) => {
 
     const [description, setDescription] = useState('');
@@ -18,6 +19,8 @@ const PostJob = (props) => {
         if (checkLength(description) && checkLength(location) && checkLength(name)) {
             const token   = JSON.parse(localStorage.getItem('user')).data.token;
              let res=   await PostData(token , name, description, location);
+             alert('You have added a Job');
+             props.history.push('/dashboard')
              console.log(res.data)
         } else {
             setError(true)
@@ -81,4 +84,4 @@ const PostJob = (props) => {
     )
 }
 
-export default PostJob
+export default withRouter(PostJob);

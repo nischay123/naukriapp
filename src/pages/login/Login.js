@@ -83,7 +83,7 @@ const Login = (props) => {
 
                 <div className={["text-center"].join(" ")}>
                     <p>New to MyJobs? <span className={style.link_text}>
-                        <Link to="/register"> Create an account</Link>
+                        <Link to="/register" style={{ textDecoration: 'none' , color:'#43AFFF' }}> Create an account</Link>
                     </span>
                     </p>
                 </div>

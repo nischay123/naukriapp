@@ -26,7 +26,8 @@
 
 .wrapper{
     width: 100% ;
-    background-color: #303F60;
+    background: linear-gradient(253deg, #303f60 0%, #1a253c 100%) 0% 0% no-repeat;
+
 
   }
 .banner_heading{

@@ -67,14 +67,14 @@ const Signup = (props) => {
                     <div className="">
                         <div
                             className={style.button_radio}
-                            onClick={() => setRole(1)}
+                            onClick={() => setRole(0)}
                             style={
                                 { backgroundColor: role === 0 ? '#43afff' : '#fff', color: role === 0 ? '#fff' : '#303f36' }} >
                             Recruiter
                         </div>
                         <div
                             className={[style.button_radio, 'mg-l-1'].join(" ")}
-                            onClick={() => setRole(0)}
+                            onClick={() => setRole(1)}
                             style={
                                 { backgroundColor: role === 1 ? '#43afff' : '#fff', color: role === 1 ? '#fff' : '#303f36' }} >
                             Candidate
@@ -173,7 +173,7 @@ const Signup = (props) => {
                 </div>
 
                 <div className={["text-center"].join(" ")}>
-                    <p>Have an account?<Link to='/login'> <span className={style.link_text}>
+                    <p>Have an account?<Link to='/login' style={{textDecoration:'none'}}> <span className={style.link_text}>
                         Login
                     </span>
                     </Link>

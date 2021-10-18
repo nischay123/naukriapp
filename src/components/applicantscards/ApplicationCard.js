@@ -1,22 +1,22 @@
 import React from 'react';
 import style from './Card.module.css'
 
-const ApplicationCard = (props) => {
+const ApplicationCard = ({email,name,skills}) => {
     return (
         <div className={style.applicant_card}>
             <div className={style.applicant_profile}>
                 <div className={style.avatar}>
-                    {/* {name.split("")[0]} */}
-                    A
+                    {name.split("")[0]}
+                    
                 </div>
                 <div className={style.details}>
                     <p className={style.name}>
-                        {/* {name} */}
-                        name
+                        {name}
+                        {/* name */}
                     </p>
                     <p className={style.email}>
-                        {/* {email} */}
-                        email
+                        {email}
+                        {/* email */}
                     </p>
                 </div>
             </div>

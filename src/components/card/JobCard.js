@@ -1,7 +1,8 @@
 import React from 'react';
 import style from './JobCard.module.css'
 
-export default function JobCard({setToggleBackdrop,toggleBackdrop , title,description, location}) {
+export default function JobCard({setapplicants,jobid,handleViewApplicant,setToggleBackdrop,toggleBackdrop , title,description, location}) {
+    console.log("jobcard",jobid)
     return (
         <div className={style.card}>
                     <h3>
@@ -19,7 +20,15 @@ export default function JobCard({setToggleBackdrop,toggleBackdrop , title,descri
                         <div className={style.location}>
                             {location}
                         </div>
-                        <div className={style.view_application} onClick={() => setToggleBackdrop(!toggleBackdrop)} >View applications</div>
+                        <div 
+                        className={style.view_application} 
+                        onClick={async () => {
+                            await handleViewApplicant(jobid);
+                            setToggleBackdrop(!toggleBackdrop)
+                        }
+                        } >
+                            View applications
+                        </div>
                     </div>
             </div>
     )

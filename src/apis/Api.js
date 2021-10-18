@@ -29,16 +29,17 @@ const LoginApi = (email, password,) => {
         password
     })
 }
-const PostData = (token, name, description, location) => {
-    console.log(token, name, description, location);
-    return API.post('/jobs/', {
+const PostData = async (token, name, description, location) => {
+    console.log(token, name, description, location,"hello");
+    return await API.post('/jobs/', {
         title: name,
         description: description,
         location: location
     }, {
         headers: {
-            "Content-Type": "application/json",
-            Authorization:  token //the token is a variable which holds the token
+            'Content-Type': 'application/json',
+            Authorization:  token 
+            //the token is a variable which holds the token
         }
 
     })
@@ -50,7 +51,7 @@ const VerifyPasswordToken = (token) => {
 }
 
 const ChangePassword = (token, password, confirmPassword) => {
-    return API.get(`/auth/resetpassword/${token}`, {
+    return API.post(`/auth/resetpassword/`, {
         password,
         token,
         confirmPassword
@@ -65,10 +66,33 @@ const GetResetPasswordToken = (email) => {
 
 
 
-const GetAllJobs = (email) => {
-    return API.get(`/jobs`, {
-    })
+const GetAllJobs = async (token) => {
+    return await API.get(`/recruiters/jobs`,{
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization:  token 
+            //the token is a variable which holds the token
+        }
+
+    });
 }
+
+
+// "Get one job candidates
+
+
+const  GetOneJobCandidates= async (token, jobId) => {
+    return await API.get(`/recruiters/jobs/${jobId}/candidates/`,{
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization:  token 
+            //the token is a variable which holds the token
+        }
+
+    });
+}
+
+
 export {
     GetAllJobs,
     LoginApi,
@@ -76,6 +100,7 @@ export {
     SignUpApi,
     VerifyPasswordToken,
     ChangePassword,
-    GetResetPasswordToken
+    GetResetPasswordToken,
+    GetOneJobCandidates
 }
 

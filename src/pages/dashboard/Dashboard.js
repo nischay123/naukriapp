@@ -7,43 +7,53 @@ import chevron from '../../assets/chevron.png'
 import JobCard from '../../components/card/JobCard';
 import { paginationHandle } from '../../common/Commonfunction';
 import Button from '../../components/Button/Button';
+import { GetAllJobs, GetOneJobCandidates } from '../../apis/Api';
 
 const Dashboard = (props) => {
     const [toggleBackdrop, setToggleBackdrop] = useState(false)
-    const [applicants, setapplicants] = useState(null);
+    const [applicants, setapplicants] = useState([]);
+    const [currentNumber, setCurrentNumber] = useState(1);
+    const [applicantPageNumber, setApplicantPageNumber] = useState(1);
+    const [data, setdata] = useState([])
 
-
-
-
-    const handleViewApplicant = () => {
-        // ask for aplicants
-
+    const handleViewApplicant = (jobid) => {
+        const getApplicants = async (jobid) => {
+            const token = JSON.parse(localStorage.getItem('user')).data.token
+            const res = await GetOneJobCandidates(token, jobid);
+            setapplicants(res.data.data)
+          
+        }
+        getApplicants(jobid);
     }
-    console.log("dashborad", props);
 
-
-    const data = [
-        { title: 'hell0', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt…', location: 'Gurugram' },
-        { title: 'hell1', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt…', location: 'delhi' },
-        { title: 'hell2', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt…', location: 'alsdfs' },
-        { title: 'hell3', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt…', location: 'amar' },
-        { title: 'hell4', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt…', location: 'karnan' },
-        { title: 'hell5', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt…', location: 'alsdfs' },
-        { title: 'hell6', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt…', location: 'amar' },
-        { title: 'hell7', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt…', location: 'alsdfs' },
-        { title: 'hell8', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt…', location: 'amar' },
-        { title: 'hell9', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt…', location: 'alsdfs' },
-        { title: 'hell10', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt…', location: 'amar' },
-    ]
+    useEffect(() => {
+        const getData = async () => {
+            const token = JSON.parse(localStorage.getItem('user')).data.token
+            const res = await GetAllJobs(token);
+            console.log("line 50", res?.data?.data?.data)
+            if(res?.data?.data?.data !== undefined){
+                setdata([...res?.data?.data?.data])
+            }
+        }
+        if(localStorage.getItem('user') ===  null){
+            props.history.push('/');
+        }else{
+            getData();
+        }
+    }, [])
 
     const windowItems = 4;
-    const [currentNumber, setCurrentNumber] = useState(2);
     const lastIndex = windowItems * (currentNumber);
     const firstIndex = windowItems * (currentNumber - 1);
     const windowCards = data.slice(firstIndex, lastIndex);
+    const pagelastIndex = windowItems * (applicantPageNumber);
+    const pagefirstIndex = windowItems * (applicantPageNumber - 1);
+    const pagewindowCards = applicants!== undefined?  applicants.slice(pagefirstIndex, pagelastIndex): [];
 
     return (
+
         <div className={style.dashboard_container}>
+            {console.log("data", data,)}
             <div className={style.blackspace}>
                 <div className={style.home_navigator}>
                     <i class={["fa fa-home", style.icon_home].join(" ")} ></i>
@@ -59,6 +69,9 @@ const Dashboard = (props) => {
                 {
                     windowCards.map((job, index) => {
                         return <JobCard
+                            setapplicants={setapplicants}
+                            jobid={job.id}
+                            handleViewApplicant={handleViewApplicant}
                             setToggleBackdrop={() => setToggleBackdrop(!toggleBackdrop)}
                             toggleBackdrop={toggleBackdrop}
                             key={index}
@@ -79,7 +92,9 @@ const Dashboard = (props) => {
                         color="#FFFFFF"
                         paddingX='2.3rem'
                         backGroundColor='#43AFFF'
-                        padding='.5rem' />                        </div>
+                        padding='.5rem' />                    
+                        
+                    </div>
             </div>}
 
             {data.length !== 0 && <div className={style.pagination_number}>
@@ -98,32 +113,55 @@ const Dashboard = (props) => {
                 >next</div>
             </div>
             }
-
-
-            {toggleBackdrop && <Backdrop
+            {
+            toggleBackdrop && <Backdrop
                 toggleBackdrop={toggleBackdrop}
                 setToggleBackdrop={setToggleBackdrop}
             >
+                <div className={style.subtitle}>
+                    Total {applicants !== undefined ? applicants.length : '0'} applications
+                </div>
                 <div className={style.applicants_cards_container}>
-                    <div className={style.application_container}>
-                        <ApplicationCard />
-                        <ApplicationCard />
-                        <ApplicationCard />
-                        <ApplicationCard /><ApplicationCard />
-                        <ApplicationCard />
-                        <ApplicationCard /><ApplicationCard />
-                        <ApplicationCard />
-                    </div>
-                    {false && <div className="center">
+
+                    {applicants !== undefined && <div className={style.application_container}>
+
+                        {
+                            pagewindowCards.map((applicant, index) => {
+                                return <ApplicationCard
+                                    key={applicant.id}
+                                    email={applicant.email}
+                                    name={applicant.name}
+                                    skills={applicant.skills}
+                                />
+                            })
+                        }
+                    </div>}
+                    {applicants === undefined && <div className="center">
                         <div className={style.fileicon}>  <i class="fa fa-file"></i>
                             <p>No applications available!</p>
                         </div>
                     </div>}
+
+
+                </div>
+                <div className={style.pagination_number}>
+                    <div className={style.back}
+                        onClick={() => {
+                            const result = paginationHandle(applicants.length, 4, 0, applicantPageNumber);
+                            setApplicantPageNumber(result);
+                        }
+                        }>back</div>
+                    <div className={style.number}>{applicantPageNumber} </div>
+                    <div className={style.next}
+                        onClick={() => {
+                            const result = paginationHandle(applicants.length, 4, 1, applicantPageNumber);
+                            setApplicantPageNumber(result);
+                        }}
+                    >next</div>
                 </div>
             </Backdrop>
             }
         </div>
     )
 }
-
 export default withRouter(Dashboard)

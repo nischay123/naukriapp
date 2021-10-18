@@ -61,7 +61,7 @@ const ForgetPassword = (props) => {
                     <small>Email is wrong or you must register!</small>
                 </p>}
 
-                <div className={["center", "mg-b-2rem"].join(" ")}>
+                <div className={["center", "mg-b-2rem" ,"mg-top-2rem"].join(" ")}>
                     <Button
                         handleClick={handleForgetSubmit}
                         content="submit"

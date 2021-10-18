@@ -1,10 +1,10 @@
 .applicant_card {
-    background: var(--white);
+    background: var(--white-color);
     color: var(--deep-dark-blue);
     border: 1px solid #303f6080;
     border-radius: 5px;
 
-    width: 16rem;
+    width: 48%;
     margin: 0.6rem auto;
     padding: 1rem;
   }
@@ -13,6 +13,10 @@
     display: flex;
     align-items: center;
   
+}
+.title{
+  font-size: .8rem;
+  font-weight: 500;
 }
 
 
