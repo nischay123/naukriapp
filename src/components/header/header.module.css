@@ -99,14 +99,14 @@
 div.logout_msg_container p{
     font-size: 12px;
     font-weight: 300;
-    color: #303F60;
+    color: var(--dark-black);
 }
 div.logout_msg_container h3{
     text-transform: capitalize;
-    color: #43AFFF;
+    color: var(--light-blue);
 
 }
 div.logout_msg_container h3 i{
-    color: #303F60;
+    color: var(--dark-black);
 
 }

@@ -12,7 +12,7 @@
     font-weight: 600;
     font-size: 1.3rem;
     letter-spacing: 0px;
-    color: #303F60;
+    color: var(--dark-black);
     text-transform: capitalize;
     margin: 1rem auto;
 }

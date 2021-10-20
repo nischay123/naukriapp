@@ -49,7 +49,6 @@ input:focus, textarea:focus{
     line-height: 1rem;
 }
 .error{
-    color: tomato;
     /* float: right; */
     text-align: end;
     font-size: .8rem;

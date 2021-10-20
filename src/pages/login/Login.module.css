@@ -44,7 +44,7 @@ input:focus{
 
 .link_to_forget{
     letter-spacing: 0px;
-    color: #43AFFF;
+    color: var(--light-blue);
     text-align: end;
     float: right;
 }
